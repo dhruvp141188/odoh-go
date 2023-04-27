@@ -34,6 +34,7 @@ import (
 
 const (
 	ODOH_VERSION                    = uint16(0xFF06)
+	ODOH_VERSION_ONE                = uint16(0x0001)
 	ODOH_SECRET_LENGTH              = 32
 	ODOH_PADDING_BYTE               = uint8(0)
 	ODOH_LABEL_KEY_ID               = "odoh key id"
@@ -233,7 +234,7 @@ func parseConfigHeader(buffer []byte) (uint16, uint16, error) {
 }
 
 func isSupportedConfigVersion(version uint16) bool {
-	return version == ODOH_VERSION
+	return (version == ODOH_VERSION || version == ODOH_VERSION_ONE)
 }
 
 func UnmarshalObliviousDoHConfig(buffer []byte) (ObliviousDoHConfig, error) {
